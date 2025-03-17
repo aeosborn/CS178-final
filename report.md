@@ -75,8 +75,9 @@ Training and evaluation data is split at a ratio of 20% evaluation data (N = 260
 For this project, the most effective classifiers were tree-form classifiers that were comfortable working with large datasets. Initially, a tuned random forest classifier having an 85.72% evaluation accuracy, however with a very high overfitting. Random forest training accuracy converged to over 99%. To combat this overfitting, two appoaches were isolated.
 
 ### Approach diffirences
-Ensamble approaches provide a way to combat model overfitting, and allow for convergence to higher evaluation scores. For large N values ( N > 10K), HistBagging operates by operating on a subset of the factors to create large voting. The Extra Trees classifier is another ensamble, operating as a voting ensamble with trees training on subsets of the dataset. 
-
+Ensamble approaches provide a way to combat model overfitting, and allow for convergence to higher evaluation scores. 
+For large N values ( N > 10K), HistGradientBoostingClassifier operates by operating on a subset of the factors to create large voting. HistGradientBoostingClassifier performs significantly better on training data compared to the regular GradientBoostingClassifier without overfitting, evident in its higher evaluation accuracy compared to the regular GradientBoostingClassifier's training accuracy. 
+The Extra Trees classifier is another ensamble, operating as a voting ensamble with trees training on subsets of the dataset. 
 
 ## 5. Model Evaluation
 - **Performance Metrics**: Metrics used to evaluate model performance (e.g., accuracy, precision, recall, F1 score).
