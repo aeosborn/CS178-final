@@ -67,21 +67,29 @@ F-values are used in analysis of variance (ANOVA) to assess the connection betwe
 \end{array}
 
 ## 3. Data Preprocessing
-The provided data contains NAs in the form of ?. These are handled at the modelling level using NA ommission. For initial modelling, we find no significant fraction of any collumns contain empty values. No significant outlier exists in entries, indicating misinput or otherwise. The dataset contains both categorical and numeric values. Categorical data is non-ordinal, but in some modelling, ex extracted into binary factors. 
-
-The response of interest, income category, is seperated from 
+The provided data contains NAs in the form of ?. These are handled at the modelling level using NA ommission. For initial modelling, we find no significant fraction of any collumns contain empty values. No significant outlier exists in entries, indicating misinput or otherwise. The dataset contains both categorical and numeric values. Categorical data is non-ordinal, but in some modelling, ex extracted into binary factors. The response, income, had no missing values
 
 Training and evaluation data is split at a ratio of 20% evaluation data (N = 26048), 80% training (N = 6513).
 
 ## 4. Model Selection and Training
-- **Model Choices**: Description of different models considered (e.g., neural networks, support vector machines, random forests).
-- **Parameter Tuning**: Exploration of various hyperparameters and their impact on model performance.
-- **Model Training**: Training process for each model, including any specific techniques used.
+For this project, the most effective classifiers were tree-form classifiers that were comfortable working with large datasets. Initially, a tuned random forest classifier having an 85.72% evaluation accuracy, however with a very high overfitting. Random forest training accuracy converged to over 99%. To combat this overfitting, two appoaches were isolated.
+
+### Approach diffirences
+Ensamble approaches provide a way to combat model overfitting, and allow for convergence to higher evaluation scores. For large N values ( N > 10K), HistBagging operates by operating on a subset of the factors to create large voting. The Extra Trees classifier is another ensamble, operating as a voting ensamble with trees training on subsets of the dataset. 
+
 
 ## 5. Model Evaluation
 - **Performance Metrics**: Metrics used to evaluate model performance (e.g., accuracy, precision, recall, F1 score).
-- **Validation Techniques**: Use of validation or cross-validation to assess model performance.
 - **Comparison of Models**: Comparative analysis of different models and their performance.
+
+Models are evaluated based upon accuracy, with the primary metric of significance being the model classification accuracy. Using a field of tweaked hyperparameters, model evaluation accuracy and training accuracy can be calculated.
+
+![Multi-model overfitting comparison](image.png)
+
+This comparison shows that while the Hist Bagging approach has marginally higher evaluation accuracy, it  has significantly less overfitting, seen as a smaller distance from the dividing dotted line.
+
+In comparing these two models, there is an observable diffirence between the types of ensambles to combat overfitting when creating ensambles from subsets of the factors for this dataset. This likely means that there is a natural and generalizable trend between factors and response. This is corraberated with high accuracy when applyting Logistic Regression, and from the high accuracy achivable by these factor-based models.
+
 
 ## 6. Model Optimization
 - **Addressing Underfitting/Overfitting**: Strategies used to handle underfitting and overfitting.
